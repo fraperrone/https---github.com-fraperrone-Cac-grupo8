@@ -19,7 +19,7 @@ export default function Show() {
   //3 funcion para mostrar todos los docs
   const getPersonas = async () => {
     const data = await getDocs(personasCollection);
-    console.log(data);
+    //console.log(data);
     setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
