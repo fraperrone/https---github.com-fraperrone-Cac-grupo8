@@ -52,6 +52,7 @@ export default function Show() {
                 </Card.Body>
                 <Card.Footer>
                 <button className="btn btn-danger" ><i className="fa-solid fa-trash"></i></button>
+                <Link  className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
                 </Card.Footer>
               </Card>
             </li>
