@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig/firebase";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom"
 
 export default function Show() {
   //1 configurar useState (hook)
@@ -31,7 +32,9 @@ export default function Show() {
   return (
     <>
       <h1>Estudiantes - Comision 23808 Grupo 8</h1>
-
+      <div className="d-grid gap-2">
+        <Link to ="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
+      </div>
       <ul>
         {personas.map((el, index) => {
           return (
