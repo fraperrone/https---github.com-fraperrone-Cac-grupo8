@@ -48,8 +48,11 @@ export default function Show() {
                   <a href={el.linkedin} target="_blank" rel="noreferrer">
                     <Button variant="primary">Go Linkedin!</Button>
                   </a>
-                  <button className="btn btn-danger" ><i className="fa-solid fa-trash"></i></button>
+                  
                 </Card.Body>
+                <Card.Footer>
+                <button className="btn btn-danger" ><i className="fa-solid fa-trash"></i></button>
+                </Card.Footer>
               </Card>
             </li>
           );
