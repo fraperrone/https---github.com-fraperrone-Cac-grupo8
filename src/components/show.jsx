@@ -45,9 +45,10 @@ export default function Show() {
                 <Card.Body>
                   <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
                   <Card.Text>{el.experiencia}</Card.Text>
-                  <a href={el.linkedin} target="_blank">
+                  <a href={el.linkedin} target="_blank" rel="noreferrer">
                     <Button variant="primary">Go Linkedin!</Button>
                   </a>
+                  <button className="btn btn-danger" ><i className="fa-solid fa-trash"></i></button>
                 </Card.Body>
               </Card>
             </li>
