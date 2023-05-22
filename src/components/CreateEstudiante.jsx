@@ -22,6 +22,7 @@ export const Create = () => {
         //prueba try
         try{
             //throw("error catch ")
+            
             await addDoc(estudiantesCollection, {
                 nombre: nombre,
                 linkedin: linkedin,
@@ -63,7 +64,8 @@ export const Create = () => {
                                 type="url"
                                 required
                                 placeholder="https://www.linkedin.com/"
-                                pattern="https://www.linkedin.com/." />
+                                
+                                 />
                         </div>
 
                         <div className="mb-3">
