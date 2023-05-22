@@ -48,7 +48,10 @@ export const Create = () => {
                                 value={nombre}
                                 onChange={(e) => setNombre(e.target.value)}
                                 className="form-control"
-                                type="text" />
+                                type="text"
+                                placeholder="Nombre"
+                                
+                                required />
                         </div>
 
                         <div className="mb-3">
@@ -57,7 +60,10 @@ export const Create = () => {
                                 value={linkedin}
                                 onChange={(e) => setLinkedin(e.target.value)}
                                 className="form-control"
-                                type="text" />
+                                type="url"
+                                required
+                                placeholder="https://www.linkedin.com/"
+                                pattern="https://www.linkedin.com/." />
                         </div>
 
                         <div className="mb-3">
@@ -66,7 +72,9 @@ export const Create = () => {
                                 value={experiencia}
                                 onChange={(e) => setExperiencia(e.target.value)}
                                 className="form-control"
-                                type="text" />
+                                type="text"
+                                placeholder="Experiencia"
+                                required />
                         </div>
                         <div className="mb-3">
                             <label className="form-label">Titulo</label>
@@ -74,7 +82,9 @@ export const Create = () => {
                                 value={titulo}
                                 onChange={(e) => setTitulo(e.target.value)}
                                 className="form-control"
-                                type="text" />
+                                type="text"
+                                placeholder="Titulo"
+                                required />
                         </div>
                         <button type="submit" className="btn btn-primary">Create Estudiante</button>
                         <Link to="/">
