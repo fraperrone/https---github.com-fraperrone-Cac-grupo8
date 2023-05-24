@@ -8,6 +8,8 @@ import { Link } from "react-router-dom"
 
 import { DeletePersona } from "./DeletePersona";
 
+import { ClimbingBoxLoader, ClipLoader } from "react-spinners"
+
 export default function Show() {
   //1 configurar useState (hook)
   const [personas, setPersonas] = useState([]);
@@ -23,24 +25,33 @@ export default function Show() {
   const getPersonas = async () => {
     const data = await getDocs(personasCollection);
     //console.log(data);
+    setCargando(false)
     setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
   };
 
   //eliminar persona:
 
-
+  const [cargando, setCargando]=useState([true])
 
   //6 use Effect
   useEffect(() => {
     getPersonas();
+   
+    
   }, []);
+
+  if (cargando){
+    return (<ClipLoader color="#36d7b7" />)
+  }
 
   return (
     <>
+      
       <h1>Estudiantes - Comision 23808 Grupo 8</h1>
       <div className="d-grid gap-2">
         <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
       </div>
+      
       <ul>
         {personas.map((el, index) => {
           return (
