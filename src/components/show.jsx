@@ -8,7 +8,7 @@ import { Link } from "react-router-dom"
 
 import { DeletePersona } from "./DeletePersona";
 
-import { ClimbingBoxLoader, ClipLoader } from "react-spinners"
+import { ClipLoader } from "react-spinners"
 
 export default function Show() {
   //1 configurar useState (hook)
