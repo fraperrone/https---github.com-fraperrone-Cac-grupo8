@@ -14,7 +14,7 @@ export const DeletePersona = async (id) => {
         // window.location.reload(false);
         alert("Elemento borrado")
         // Navigate("/")
-        window.location.reload(false);
+        //window.location.reload(false);
     }else{
         alert("Operacion cancelada")
         // Navigate("/")   

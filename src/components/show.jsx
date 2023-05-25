@@ -38,7 +38,7 @@ export default function Show() {
     getPersonas();
    
     
-  }, []);
+  } );
 
   if (cargando){
     return (<ClipLoader color="#36d7b7" />)
