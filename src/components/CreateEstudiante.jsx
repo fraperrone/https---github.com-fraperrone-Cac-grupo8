@@ -5,6 +5,8 @@ import { db } from "../firebaseConfig/firebase.js"
 
 import swal from 'sweetalert';
 
+import { useForm} from "react-hook-form"
+
 
 //Campos: -experiencia -linkedin -nombre -titulo
 
@@ -14,12 +16,15 @@ export const Create = () => {
     const [experiencia, setExperiencia] = useState("")
     const [titulo, setTitulo] = useState("")
 
+    const { handleSubmit, formState } = useForm();
+    const { isSubmitting } = formState;
+
     const navigate = useNavigate()
 
     const estudiantesCollection = collection(db, "estudiantes")
 
     const createEstudiante = async (e) => {
-        e.preventDefault()
+       
 
         //prueba try
         try {
@@ -44,7 +49,7 @@ export const Create = () => {
             <div className="row">
                 <div className="col">
                     <h1>Crear Estudiante</h1>
-                    <form onSubmit={createEstudiante}>
+                    <form onSubmit={handleSubmit(createEstudiante)}>
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
                             <input
@@ -90,7 +95,9 @@ export const Create = () => {
                                 placeholder="Titulo"
                                 required />
                         </div>
-                        <button type="submit" className="btn btn-primary">Create Estudiante</button>
+                        <button disabled={isSubmitting}  className="btn btn-primary">
+                            {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
+                            Create Estudiante</button>
                         <Link to="/">
                             <button className="btn btn-danger">
                                 CANCEL
