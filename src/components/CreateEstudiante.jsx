@@ -3,6 +3,8 @@ import { useNavigate, Link } from "react-router-dom"
 import { collection, addDoc } from "firebase/firestore"
 import { db } from "../firebaseConfig/firebase.js"
 
+import swal from 'sweetalert';
+
 
 //Campos: -experiencia -linkedin -nombre -titulo
 
@@ -10,7 +12,7 @@ export const Create = () => {
     const [nombre, setNombre] = useState("")
     const [linkedin, setLinkedin] = useState("")
     const [experiencia, setExperiencia] = useState("")
-    const [titulo, setTitulo]= useState("")
+    const [titulo, setTitulo] = useState("")
 
     const navigate = useNavigate()
 
@@ -20,21 +22,21 @@ export const Create = () => {
         e.preventDefault()
 
         //prueba try
-        try{
+        try {
             //throw("error catch ")
-            
+
             await addDoc(estudiantesCollection, {
                 nombre: nombre,
                 linkedin: linkedin,
                 experiencia: experiencia,
-                titulo:titulo
+                titulo: titulo
             })
-            alert("Carga OK")
+            swal("Carga Correcta", "La persona fue cargada de forma exitosa", "success");
             navigate("/")
-        }catch(error){
-            alert("Erorr addDoc Estudiante: ",error)
+        } catch (error) {
+            alert("Erorr addDoc Estudiante: ", error)
         }
-        
+
     }
 
     return (
@@ -51,7 +53,7 @@ export const Create = () => {
                                 className="form-control"
                                 type="text"
                                 placeholder="Nombre"
-                                
+
                                 required />
                         </div>
 
@@ -64,8 +66,8 @@ export const Create = () => {
                                 type="url"
                                 required
                                 placeholder="https://www.linkedin.com/"
-                                
-                                 />
+
+                            />
                         </div>
 
                         <div className="mb-3">
