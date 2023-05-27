@@ -6,7 +6,9 @@ import swal from 'sweetalert';
 
 
 
+
 export const DeletePersona = async (id) => {
+
 
 
     //Sweet alert
@@ -23,6 +25,7 @@ export const DeletePersona = async (id) => {
                     icon: "success",
                 });
                 ConfirmarDeletePersona(id)
+                
             } else {
                 swal("Operacion Cancelada");
             }
@@ -52,5 +55,8 @@ const ConfirmarDeletePersona = async (id) => {
     //alert("Elemento borrado")
     // Navigate("/")
     //window.location.reload(false);
+    // useEffect( ()=>{
+
+    //  Show()},[])
 
 }

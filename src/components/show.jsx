@@ -23,10 +23,20 @@ export default function Show() {
 
   //3 funcion para mostrar todos los docs
   const getPersonas = async () => {
+    try{
     const data = await getDocs(personasCollection);
     //console.log(data);
     setCargando(false)
     setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    }catch(error){
+
+      //Error de Quota Exceeded
+      //Metodo 1
+      document.open()
+      document.write(`<h2>${error}</h2>`)
+      document.close()
+     
+    }
   };
 
   //eliminar persona:
@@ -38,7 +48,8 @@ export default function Show() {
     getPersonas();
 
 
-  });
+  },[()=>{
+    DeletePersona()}]);
 
   if (cargando) {
     return (
@@ -73,7 +84,7 @@ export default function Show() {
                 </Card.Body>
                 <Card.Footer>
                   <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
-                  <Link className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                  <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
                 </Card.Footer>
               </Card>
             </li>
