@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { getDoc, doc, updateDoc } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
 import { Link, useParams, useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form"
 
 import swal from "sweetalert";
 
@@ -15,6 +16,9 @@ export function EditarPersona() {
   const { id } = useParams()
 
   const navigate = useNavigate()
+
+  const { handleSubmit, formState} = useForm();
+  const { isSubmitting }= formState
 
   const getPersona = async (id) => {
     const estudiantesDoc = await getDoc(doc(db, "estudiantes", id))
@@ -30,7 +34,7 @@ export function EditarPersona() {
   }
 
   const update = async (e) => {
-    e.preventDefault();
+    // e.preventDefault();
     try {
       //throw("super error");
       const estudiantesDoc = doc(db, "estudiantes", id);
@@ -62,7 +66,7 @@ export function EditarPersona() {
       <div className="row">
         <div className="col">
           <h1>Edit Persona</h1>
-          <form onSubmit={update}>
+          <form onSubmit={handleSubmit(update)}>
             <div className="mb-3">
               <label className="form-label">Nombre</label>
               <input
@@ -101,7 +105,8 @@ export function EditarPersona() {
                 type="text"
               />
             </div>
-            <button type="submit" className="btn btn-primary">
+            <button disabled={isSubmitting} className="btn btn-primary">
+            {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
               Edit Persona
             </button>
             <Link to="/">
