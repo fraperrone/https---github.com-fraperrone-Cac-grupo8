@@ -10,6 +10,11 @@ import { DeletePersona } from "./DeletePersona";
 
 import { ClipLoader } from "react-spinners"
 
+
+import { Input } from 'semantic-ui-react'
+import 'semantic-ui-css/semantic.min.css'
+
+
 export default function Show() {
   //1 configurar useState (hook)
   const [personas, setPersonas] = useState([]);
@@ -18,24 +23,47 @@ export default function Show() {
   //const personasCollection = collection(db,"personas")
   // const personasCollection = collection(db, "cac_grupo8");
 
+  //Buscador:
+  const [filteredResults, setFilteredResults] = useState([]);
+  const [searchInput, setSearchInput] = useState('');
+
+  const searchItems = (searchValue) => {
+    setSearchInput(searchValue)
+    if (searchInput !== '') {
+      const filteredData = personas.filter((item) => {
+        return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
+      })
+      console.log(filteredData)
+      setFilteredResults(filteredData)
+    }
+    else {
+      setFilteredResults(personas)
+    }
+  }
+
+
+
+  //
+
+
   //Conexion Franco
   const personasCollection = collection(db, "estudiantes");
 
   //3 funcion para mostrar todos los docs
   const getPersonas = async () => {
-    try{
-    const data = await getDocs(personasCollection);
-    //console.log(data);
-    setCargando(false)
-    setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    }catch(error){
+    try {
+      const data = await getDocs(personasCollection);
+      //console.log(data);
+      setCargando(false)
+      setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    } catch (error) {
 
       //Error de Quota Exceeded
       //Metodo 1
       document.open()
       document.write(`<h2>${error}</h2>`)
       document.close()
-     
+
     }
   };
 
@@ -48,8 +76,9 @@ export default function Show() {
     getPersonas();
 
 
-  },[()=>{
-    DeletePersona()}]);
+  }, [() => {
+    DeletePersona()
+  }]);
 
   if (cargando) {
     return (
@@ -66,31 +95,62 @@ export default function Show() {
       <div className="d-grid gap-2">
         <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
       </div>
-
+      {/* <Search></Search> */}
+      <Input icon='search'
+        placeholder='Search...'
+        onChange={(e) => searchItems(e.target.value)}
+      />
       <ul>
-        {personas.map((el, index) => {
-          return (
-            //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
-            <li>
-              <Card>
-                <Card.Header>{el.nombre}</Card.Header>
-                <Card.Body>
-                  <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
-                  <Card.Text>{el.experiencia}</Card.Text>
-                  <a href={el.linkedin} target="_blank" rel="noreferrer">
-                    <Button variant="primary">Go Linkedin!</Button>
-                  </a>
+        {searchInput.length > 1 ? (
+          filteredResults.map((el, index) => {
+            return (
+              //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
+              <li>
+                <Card>
+                  <Card.Header>{el.nombre}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
+                    <Card.Text>{el.experiencia}</Card.Text>
+                    <a href={el.linkedin} target="_blank" rel="noreferrer">
+                      <Button variant="primary">Go Linkedin!</Button>
+                    </a>
 
-                </Card.Body>
-                <Card.Footer>
-                  <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
-                  <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
-                </Card.Footer>
-              </Card>
-            </li>
-          );
-        })}
+                  </Card.Body>
+                  <Card.Footer>
+                    <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
+                    <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                  </Card.Footer>
+                </Card>
+              </li>
+            );
+          })
+        ) : (
+          personas.map((el, index) => {
+            return (
+              //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
+              <li>
+                <Card>
+                  <Card.Header>{el.nombre}</Card.Header>
+                  <Card.Body>
+                    <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
+                    <Card.Text>{el.experiencia}</Card.Text>
+                    <a href={el.linkedin} target="_blank" rel="noreferrer">
+                      <Button variant="primary">Go Linkedin!</Button>
+                    </a>
+
+                  </Card.Body>
+                  <Card.Footer>
+                    <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
+                    <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                  </Card.Footer>
+                </Card>
+              </li>
+            );
+          })
+        )}
       </ul>
+
+
     </>
   );
 }
