@@ -1,7 +1,6 @@
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image"
 
-import Button from 'react-bootstrap/Button';
 
 export default function PageNotFound() {
     return (
