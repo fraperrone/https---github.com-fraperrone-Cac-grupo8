@@ -75,6 +75,9 @@ export default function Show() {
   useEffect(() => {
     getPersonas();
 
+    //bandera useEffect ( para verificar que no quede en bucle infinito)
+
+    console.log("use Effect ejecutado")
 
   }, [() => {
     DeletePersona()
