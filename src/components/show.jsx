@@ -27,6 +27,8 @@ export default function Show() {
   //const personasCollection = collection(db,"personas")
   // const personasCollection = collection(db, "cac_grupo8");
 
+  //comentario de prueba
+
   //Buscador:
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState('');
