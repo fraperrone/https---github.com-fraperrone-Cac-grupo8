@@ -117,7 +117,7 @@ export default function Show() {
   //6 use Effect
   useEffect(() => {
     getPersonas();
-    
+
     //bandera useEffect ( para verificar que no quede en bucle infinito)
     console.log("use Effect ejecutado")
   }, []);
@@ -134,15 +134,19 @@ export default function Show() {
 
   return (
     <>
-      <h1>Estudiantes - Comision 23808 Grupo 8</h1>
+      <h1 className="text-center mb-4">Estudiantes - Comision 23808 Grupo 8</h1>
+      <hr />
       <div className="d-grid gap-2">
         <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
       </div>
       {/* <Search></Search> */}
       <Input icon='search'
-        placeholder='Search...'
+        placeholder='Buscar por nombre...'
         onChange={(e) => searchItems(e.target.value)}
+        size="huge"
+        className="m-3"
       />
+      <hr className="mb-5"/>
       <ul>
         {searchInput.length > 1 ? (
           filteredResults.map((el, index) => {
