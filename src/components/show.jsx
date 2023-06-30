@@ -6,13 +6,17 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom"
 
-import { DeletePersona } from "./DeletePersona";
+// import { DeletePersona } from "./DeletePersona";
 
 import { ClipLoader } from "react-spinners"
 
 
 import { Input } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
+
+import { deleteDoc, doc } from "firebase/firestore"
+
+import swal from 'sweetalert';
 
 
 export default function Show() {
@@ -69,6 +73,69 @@ export default function Show() {
 
   //eliminar persona:
 
+
+
+  const DeletePersona = async (id) => {
+
+    //Sweet alert
+    swal({
+      title: "Estas seguro?",
+      text: "Una vez eliminado, no podrá recuperarse",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+      .then((willDelete) => {
+        if (willDelete) {
+          swal("Tarjeta CV, Eliminada", {
+            icon: "success",
+          });
+          ConfirmarDeletePersona(id)
+
+        } else {
+          swal("Operacion Cancelada");
+        }
+      });
+
+    //alert Default
+    // if (window.confirm("Delete?")) {
+    //     const estudiantesDoc = doc(db, "estudiantes", id)
+    //     await deleteDoc(estudiantesDoc)
+    //     // window.location.reload(false);
+    //     alert("Elemento borrado")
+    //     // Navigate("/")
+    //     //window.location.reload(false);
+    // }else{
+    //     alert("Operacion cancelada")
+    //     // Navigate("/")   
+    // }
+
+  }
+
+  const ConfirmarDeletePersona = async (id) => {
+
+    const estudiantesDoc = doc(db, "estudiantes", id)
+    await deleteDoc(estudiantesDoc)
+    // window.location.reload(false);
+    //alert("Elemento borrado")
+    // Navigate("/")
+    //window.location.reload(false);
+    // useEffect( ()=>{
+
+    //  Show()},[])
+    getPersonas()
+
+
+  }
+
+
+
+
+
+
+
+
+
   const [cargando, setCargando] = useState([true])
 
   //6 use Effect
@@ -79,9 +146,7 @@ export default function Show() {
 
     console.log("use Effect ejecutado")
 
-  }, [() => {
-    DeletePersona()
-  }]);
+  }, []);
 
   if (cargando) {
     return (

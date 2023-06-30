@@ -3,11 +3,13 @@ import { deleteDoc, doc } from "firebase/firestore"
 import { db } from "../firebaseConfig/firebase.js"
 
 import swal from 'sweetalert';
+import { getPersonas2 } from "./Show.jsx";
 
 
-
+// EN DESUSO
 
 export const DeletePersona = async (id) => {
+
 
 
 
@@ -25,7 +27,7 @@ export const DeletePersona = async (id) => {
                     icon: "success",
                 });
                 ConfirmarDeletePersona(id)
-                
+
             } else {
                 swal("Operacion Cancelada");
             }
@@ -58,5 +60,7 @@ const ConfirmarDeletePersona = async (id) => {
     // useEffect( ()=>{
 
     //  Show()},[])
+
+
 
 }

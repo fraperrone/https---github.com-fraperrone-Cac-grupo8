@@ -7,6 +7,10 @@ import PageNotFound from "./components/PageNotFound";
 import { Create } from "./components/CreateEstudiante"
 import { EditarPersona } from "./components/EditarEstudiante";
 
+
+
+// Aplicacion la cual muestra tarjetas de estudiantes con info resumida en lazando a linkedin personal
+
 export default function App() {
   return (
     <>
