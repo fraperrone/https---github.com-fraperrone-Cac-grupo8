@@ -137,7 +137,7 @@ export default function Show() {
       <h1 className="text-center mb-4">Estudiantes - Comision 23808 Grupo 8</h1>
       <hr />
       <div className="d-grid gap-2">
-        <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
+        <Link to="/create" className="btn btn-dark mt-2 mb-2">CREAR</Link>
       </div>
       {/* <Search></Search> */}
       <Input icon='search'
