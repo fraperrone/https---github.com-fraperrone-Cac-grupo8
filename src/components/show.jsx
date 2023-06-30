@@ -1,27 +1,21 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
 import { db } from "../firebaseConfig/firebase";
-
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { Link } from "react-router-dom"
-
 // import { DeletePersona } from "./DeletePersona";
-
 import { ClipLoader } from "react-spinners"
-
-
 import { Input } from 'semantic-ui-react'
 import 'semantic-ui-css/semantic.min.css'
-
 import { deleteDoc, doc } from "firebase/firestore"
-
 import swal from 'sweetalert';
 
 
 export default function Show() {
   //1 configurar useState (hook)
   const [personas, setPersonas] = useState([]);
+
   //2 referenciamos a la db de firestore
   //const personasCollection= collection(db,"heroes")
   //const personasCollection = collection(db,"personas")
@@ -47,11 +41,6 @@ export default function Show() {
     }
   }
 
-
-
-  //
-
-
   //Conexion Franco
   const personasCollection = collection(db, "estudiantes");
 
@@ -63,19 +52,15 @@ export default function Show() {
       setCargando(false)
       setPersonas(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     } catch (error) {
-
       //Error de Quota Exceeded
       //Metodo 1
       document.open()
       document.write(`<h2>${error}</h2>`)
       document.close()
-
     }
   };
 
   //eliminar persona:
-
-
 
   const DeletePersona = async (id) => {
 
@@ -98,7 +83,7 @@ export default function Show() {
           swal("Operacion Cancelada");
         }
       });
-
+    //CODIGO DESUSO (versio vieja):
     //alert Default
     // if (window.confirm("Delete?")) {
     //     const estudiantesDoc = doc(db, "estudiantes", id)
@@ -111,7 +96,6 @@ export default function Show() {
     //     alert("Operacion cancelada")
     //     // Navigate("/")   
     // }
-
   }
 
   const ConfirmarDeletePersona = async (id) => {
@@ -123,33 +107,23 @@ export default function Show() {
     // Navigate("/")
     //window.location.reload(false);
     // useEffect( ()=>{
-
     //  Show()},[])
     getPersonas()
 
-
   }
-
-
-
-
-
-
-
-
 
   const [cargando, setCargando] = useState([true])
 
   //6 use Effect
   useEffect(() => {
     getPersonas();
-
+    
     //bandera useEffect ( para verificar que no quede en bucle infinito)
-
     console.log("use Effect ejecutado")
-
   }, []);
 
+
+  //Spinner inicializador:
   if (cargando) {
     return (
       <div className=" d-flex align-items-center justify-content-center" >
@@ -160,7 +134,6 @@ export default function Show() {
 
   return (
     <>
-
       <h1>Estudiantes - Comision 23808 Grupo 8</h1>
       <div className="d-grid gap-2">
         <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
@@ -184,7 +157,6 @@ export default function Show() {
                     <a href={el.linkedin} target="_blank" rel="noreferrer">
                       <Button variant="primary">Go Linkedin!</Button>
                     </a>
-
                   </Card.Body>
                   <Card.Footer>
                     <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
@@ -207,7 +179,6 @@ export default function Show() {
                     <a href={el.linkedin} target="_blank" rel="noreferrer">
                       <Button variant="primary">Go Linkedin!</Button>
                     </a>
-
                   </Card.Body>
                   <Card.Footer>
                     <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
@@ -219,8 +190,6 @@ export default function Show() {
           })
         )}
       </ul>
-
-
     </>
   );
 }

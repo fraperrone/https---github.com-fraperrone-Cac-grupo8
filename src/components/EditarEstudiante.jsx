@@ -4,21 +4,24 @@ import { db } from "../firebaseConfig/firebase";
 import { Link, useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 
+//Import sweetAlert:
 import swal from "sweetalert";
 
 export function EditarPersona() {
-
+  // Variables
   const [nombre, setNombre] = useState("")
   const [linkedin, setLinkedin] = useState("")
   const [experiencia, setExperiencia] = useState("")
   const [titulo, setTitulo] = useState("")
 
+  //uso parametro nnavegador: 
   const { id } = useParams()
 
+  //objeto rutas:
   const navigate = useNavigate()
 
-  const { handleSubmit, formState} = useForm();
-  const { isSubmitting }= formState
+  const { handleSubmit, formState } = useForm();
+  const { isSubmitting } = formState
 
   const getPersona = async (id) => {
     const estudiantesDoc = await getDoc(doc(db, "estudiantes", id))
@@ -47,19 +50,15 @@ export function EditarPersona() {
       await updateDoc(estudiantesDoc, data);
       swal("Modificacion Correcta", "La persona fue modificada correctamente", "success");
       navigate("/");
-    } catch(e) {
+    } catch (e) {
       swal("Carga Incorrecta", `${e}`, "error");
     }
 
   };
 
-
-
-
   useEffect(() => {
     getPersona(id);
   }, [])
-
 
   return (
     <div className="container">
@@ -76,7 +75,6 @@ export function EditarPersona() {
                 className="form-control"
               />
             </div>
-
             <div className="mb-3">
               <label className="form-label">Linkedin</label>
               <input
@@ -86,7 +84,6 @@ export function EditarPersona() {
                 type="url"
               />
             </div>
-
             <div className="mb-3">
               <label className="form-label">Experiencia</label>
               <input
@@ -106,7 +103,7 @@ export function EditarPersona() {
               />
             </div>
             <button disabled={isSubmitting} className="btn btn-primary">
-            {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
+              {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
               Edit Persona
             </button>
             <Link to="/">
