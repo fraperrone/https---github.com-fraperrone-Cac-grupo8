@@ -5,6 +5,7 @@ import { Link, useParams, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form"
 
 import swal from "sweetalert";
+import { Form } from "react-bootstrap";
 
 export function EditarPersona() {
 
@@ -65,7 +66,7 @@ export function EditarPersona() {
     <div className="container">
       <div className="row">
         <div className="col">
-          <h1>Edit Persona</h1>
+          <h1>EDITAR PERFIL</h1>
           <form onSubmit={handleSubmit(update)}>
             <div className="mb-3">
               <label className="form-label">Nombre</label>
@@ -105,13 +106,23 @@ export function EditarPersona() {
                 type="text"
               />
             </div>
+            <div>
+              <Form.Group controlId="formFile" className="mb-3">
+                <Form.Label>Cargar Documento</Form.Label>
+                  <Form.Control type="file" />
+              </Form.Group>
+              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                <Form.Check type="checkbox" label="Aceptar términos y condiciones" />
+              </Form.Group>
+            </div>
+
             <button disabled={isSubmitting} className="btn btn-primary">
             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-              Edit Persona
+              EDITAR
             </button>
             <Link to="/">
               <button className="btn btn-danger">
-                CANCEL
+                CANCELAR
               </button>
             </Link>
           </form>

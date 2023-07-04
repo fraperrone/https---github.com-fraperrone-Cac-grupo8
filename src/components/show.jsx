@@ -4,6 +4,7 @@ import { db } from "../firebaseConfig/firebase";
 
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
+import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom"
 
 // import { DeletePersona } from "./DeletePersona";
@@ -17,7 +18,6 @@ import 'semantic-ui-css/semantic.min.css'
 import { deleteDoc, doc } from "firebase/firestore"
 
 import swal from 'sweetalert';
-
 
 export default function Show() {
   //1 configurar useState (hook)
@@ -130,14 +130,6 @@ export default function Show() {
 
   }
 
-
-
-
-
-
-
-
-
   const [cargando, setCargando] = useState([true])
 
   //6 use Effect
@@ -159,17 +151,34 @@ export default function Show() {
   }
 
   return (
-    <>
-
-      <h1>Estudiantes - Comision 23808 Grupo 8</h1>
-      <div className="d-grid gap-2">
-        <Link to="/create" className="btn btn-secondary mt-2 mb-2">CREAR</Link>
-      </div>
-      {/* <Search></Search> */}
-      <Input icon='search'
-        placeholder='Search...'
-        onChange={(e) => searchItems(e.target.value)}
-      />
+    <> 
+          <div>
+              <h1> Comisión 233808 - Grupo N°8</h1>
+          </div>
+          <div>
+              <h2> Perfiles de Estudiantes</h2>
+          </div>
+  
+        <Container> 
+        <Row className="justify-content-md-center"> 
+          <Col lg="2"> 
+            <div>
+              {/* <Search></Search> */}          
+              <Input icon='search'
+                    placeholder='Search...'
+                    onChange={(e) => searchItems(e.target.value)}
+              /> 
+              </div>
+              </Col> 
+                <Col md="auto"> 
+                    <div >{/*className="d-grid gap-2"*/}
+              <Link to="/create" className="btn btn-primary mt-2 mb-2">CREAR</Link>
+                    </div>
+                    </Col> 
+           
+          
+        </Row> 
+        
       <ul>
         {searchInput.length > 1 ? (
           filteredResults.map((el, index) => {
@@ -211,7 +220,7 @@ export default function Show() {
                   </Card.Body>
                   <Card.Footer>
                     <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
-                    <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                    <Link to={`/edit/${el.id}`} className="btn btn-success"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
                   </Card.Footer>
                 </Card>
               </li>
@@ -220,7 +229,9 @@ export default function Show() {
         )}
       </ul>
 
-
-    </>
+       
+           
+  </Container>
+  </> 
   );
 }

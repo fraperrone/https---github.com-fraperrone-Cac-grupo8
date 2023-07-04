@@ -4,6 +4,7 @@ import { collection, addDoc } from "firebase/firestore"
 import { db } from "../firebaseConfig/firebase.js"
 
 import swal from 'sweetalert';
+import { Form } from "react-bootstrap";
 
 import { useForm} from "react-hook-form"
 
@@ -48,7 +49,7 @@ export const Create = () => {
         <div className="container">
             <div className="row">
                 <div className="col">
-                    <h1>Crear Estudiante</h1>
+                    <h1>CREAR ESTUDIANTE</h1>
                     <form onSubmit={handleSubmit(createEstudiante)}>
                         <div className="mb-3">
                             <label className="form-label">Nombre</label>
@@ -61,7 +62,6 @@ export const Create = () => {
 
                                 required />
                         </div>
-
                         <div className="mb-3">
                             <label className="form-label">Linkedin</label>
                             <input
@@ -95,12 +95,19 @@ export const Create = () => {
                                 placeholder="Titulo"
                                 required />
                         </div>
+                        <Form.Group controlId="formFile" className="mb-3">
+                            <Form.Label>Cargar Documento</Form.Label>
+                                <Form.Control type="file" />
+                        </Form.Group>
+                        <Form.Group className="mb-3" controlId="formBasicCheckbox">
+                            <Form.Check type="checkbox" label="Aceptar términos y condiciones" />
+                        </Form.Group>
                         <button disabled={isSubmitting}  className="btn btn-primary">
                             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
-                            Create Estudiante</button>
+                            CREAR </button>
                         <Link to="/">
                             <button className="btn btn-danger">
-                                CANCEL
+                                CANCELAR
                             </button>
                         </Link>
                     </form>
