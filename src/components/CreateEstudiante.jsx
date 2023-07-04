@@ -2,35 +2,30 @@ import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom"
 import { collection, addDoc } from "firebase/firestore"
 import { db } from "../firebaseConfig/firebase.js"
-
 import swal from 'sweetalert';
 import { Form } from "react-bootstrap";
 
 import { useForm} from "react-hook-form"
 
-
 //Campos: -experiencia -linkedin -nombre -titulo
 
 export const Create = () => {
+    //variables
     const [nombre, setNombre] = useState("")
     const [linkedin, setLinkedin] = useState("")
     const [experiencia, setExperiencia] = useState("")
     const [titulo, setTitulo] = useState("")
-
     const { handleSubmit, formState } = useForm();
     const { isSubmitting } = formState;
 
+    //Objetos
     const navigate = useNavigate()
-
     const estudiantesCollection = collection(db, "estudiantes")
 
     const createEstudiante = async (e) => {
-       
-
         //prueba try
         try {
             //throw("error catch ")
-
             await addDoc(estudiantesCollection, {
                 nombre: nombre,
                 linkedin: linkedin,
@@ -42,7 +37,6 @@ export const Create = () => {
         } catch (error) {
             alert("Erorr addDoc Estudiante: ", error)
         }
-
     }
 
     return (
@@ -59,7 +53,6 @@ export const Create = () => {
                                 className="form-control"
                                 type="text"
                                 placeholder="Nombre"
-
                                 required />
                         </div>
                         <div className="mb-3">
@@ -71,10 +64,8 @@ export const Create = () => {
                                 type="url"
                                 required
                                 placeholder="https://www.linkedin.com/"
-
                             />
                         </div>
-
                         <div className="mb-3">
                             <label className="form-label">Experiencia</label>
                             <input

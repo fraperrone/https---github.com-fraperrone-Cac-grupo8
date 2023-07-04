@@ -20,6 +20,8 @@ export default function App() {
           <Route path="*" element={<PageNotFound />} />
           <Route path="/create" element={<Create />} />
           <Route path="/edit/:id" element={<EditarPersona />} />
+          {/* ruta de pruba */}
+          <Route path="/create2" element="#" />
         </Routes>
       </BrowserRouter>
     </>
