@@ -39,7 +39,6 @@ export default function Show() {
       const filteredData = personas.filter((item) => {
         return Object.values(item).join('').toLowerCase().includes(searchInput.toLowerCase())
       })
-      console.log(filteredData)
       setFilteredResults(filteredData)
     }
     else {
@@ -183,7 +182,7 @@ export default function Show() {
             filteredResults.map((el, index) => {
               return (
                 //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
-                <li>
+                <li key={index} >
                   <Card>
                     <Card.Header>{el.nombre}</Card.Header>
                     <Card.Body>
