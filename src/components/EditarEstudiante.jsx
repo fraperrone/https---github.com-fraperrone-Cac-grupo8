@@ -103,7 +103,7 @@ export function EditarPersona() {
                 type="text"
               />
             </div>
-            <div>
+            {/* <div>
               <Form.Group controlId="formFile" className="mb-3">
                 <Form.Label>Cargar Documento</Form.Label>
                   <Form.Control type="file" />
@@ -111,7 +111,7 @@ export function EditarPersona() {
               <Form.Group className="mb-3" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Aceptar términos y condiciones" />
               </Form.Group>
-            </div>
+            </div> */}
 
             <button disabled={isSubmitting} className="btn btn-primary">
             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}

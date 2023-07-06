@@ -151,87 +151,86 @@ export default function Show() {
   }
 
   return (
-    <> 
-          <div>
-              <h1> Comisión 233808 - Grupo N°8</h1>
-          </div>
-          <div>
-              <h2> Perfiles de Estudiantes</h2>
-          </div>
-  
-        <Container> 
-        <Row className="justify-content-md-center"> 
-          <Col lg="2"> 
-            <div>
-              {/* <Search></Search> */}          
-              <Input icon='search'
-                    placeholder='Search...'
-                    onChange={(e) => searchItems(e.target.value)}
-              /> 
-              </div>
-              </Col> 
-                <Col md="auto"> 
-                    <div >{/*className="d-grid gap-2"*/}
+    <>
+      <div>
+        <h1> Comisión 23808 - Grupo N°8</h1>
+      </div>
+      <div>
+        <h2> Perfiles de Estudiantes</h2>
+      </div>
+
+      <Container>
+        <Row className="justify-content-md-center">
+          <Col className="ml-5 pl-5">
+            {/* <Search></Search> */}
+            <Input icon='search'
+              placeholder='Search...'
+              onChange={(e) => searchItems(e.target.value)}
+              className="pl-5"
+            />
+          </Col>
+          <Col >
+            <div >{/*className="d-grid gap-2"*/}
               <Link to="/create" className="btn btn-primary mt-2 mb-2">CREAR</Link>
-                    </div>
-                    </Col> 
-           
-          
-        </Row> 
-        
-      <ul>
-        {searchInput.length > 1 ? (
-          filteredResults.map((el, index) => {
-            return (
-              //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
-              <li>
-                <Card>
-                  <Card.Header>{el.nombre}</Card.Header>
-                  <Card.Body>
-                    <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
-                    <Card.Text>{el.experiencia}</Card.Text>
-                    <a href={el.linkedin} target="_blank" rel="noreferrer">
-                      <Button variant="primary">Go Linkedin!</Button>
-                    </a>
+            </div>
+          </Col>
 
-                  </Card.Body>
-                  <Card.Footer>
-                    <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
-                    <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
-                  </Card.Footer>
-                </Card>
-              </li>
-            );
-          })
-        ) : (
-          personas.map((el, index) => {
-            return (
-              //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
-              <li>
-                <Card>
-                  <Card.Header>{el.nombre}</Card.Header>
-                  <Card.Body>
-                    <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
-                    <Card.Text>{el.experiencia}</Card.Text>
-                    <a href={el.linkedin} target="_blank" rel="noreferrer">
-                      <Button variant="primary">Go Linkedin!</Button>
-                    </a>
 
-                  </Card.Body>
-                  <Card.Footer>
-                    <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
-                    <Link to={`/edit/${el.id}`} className="btn btn-success"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
-                  </Card.Footer>
-                </Card>
-              </li>
-            );
-          })
-        )}
-      </ul>
+        </Row>
 
-       
-           
-  </Container>
-  </> 
+        <ul>
+          {searchInput.length > 1 ? (
+            filteredResults.map((el, index) => {
+              return (
+                //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
+                <li>
+                  <Card>
+                    <Card.Header>{el.nombre}</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
+                      <Card.Text>{el.experiencia}</Card.Text>
+                      <a href={el.linkedin} target="_blank" rel="noreferrer">
+                        <Button variant="primary">Go Linkedin!</Button>
+                      </a>
+
+                    </Card.Body>
+                    <Card.Footer>
+                      <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
+                      <Link to={`/edit/${el.id}`} className="btn btn-dark"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                    </Card.Footer>
+                  </Card>
+                </li>
+              );
+            })
+          ) : (
+            personas.map((el, index) => {
+              return (
+                //<li key={index}>{el.nombre} ({el.edad}) (ID:{el.id})</li>
+                <li key={index}>
+                  <Card>
+                    <Card.Header>{el.nombre}</Card.Header>
+                    <Card.Body>
+                      <Card.Title>Titulo alcanzado: {el.titulo} </Card.Title>
+                      <Card.Text>{el.experiencia}</Card.Text>
+                      <a href={el.linkedin} target="_blank" rel="noreferrer">
+                        <Button variant="primary">Go Linkedin!</Button>
+                      </a>
+
+                    </Card.Body>
+                    <Card.Footer>
+                      <button className="btn btn-danger" onClick={() => DeletePersona(el.id)}  ><i className="fa-solid fa-trash"></i></button>
+                      <Link to={`/edit/${el.id}`} className="btn btn-success"><i className="fa-sharp fa-solid fa-pencil"></i></Link>
+                    </Card.Footer>
+                  </Card>
+                </li>
+              );
+            })
+          )}
+        </ul>
+
+
+
+      </Container>
+    </>
   );
 }

@@ -86,13 +86,13 @@ export const Create = () => {
                                 placeholder="Titulo"
                                 required />
                         </div>
-                        <Form.Group controlId="formFile" className="mb-3">
+                        {/* <Form.Group controlId="formFile" className="mb-3">
                             <Form.Label>Cargar Documento</Form.Label>
                                 <Form.Control type="file" />
                         </Form.Group>
                         <Form.Group className="mb-3" controlId="formBasicCheckbox">
                             <Form.Check type="checkbox" label="Aceptar términos y condiciones" />
-                        </Form.Group>
+                        </Form.Group> */}
                         <button disabled={isSubmitting}  className="btn btn-primary">
                             {isSubmitting && <span className="spinner-border spinner-border-sm mr-1"></span>}
                             CREAR </button>
