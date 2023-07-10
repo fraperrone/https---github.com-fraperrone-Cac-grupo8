@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form"
 
 //Import sweetAlert:
 import swal from "sweetalert";
-import { Form } from "react-bootstrap";
 
 export function EditarPersona() {
   // Variables
@@ -59,6 +58,7 @@ export function EditarPersona() {
 
   useEffect(() => {
     getPersona(id);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   return (

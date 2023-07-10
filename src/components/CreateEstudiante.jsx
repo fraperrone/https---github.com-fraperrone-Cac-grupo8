@@ -3,7 +3,6 @@ import { useNavigate, Link } from "react-router-dom"
 import { collection, addDoc } from "firebase/firestore"
 import { db } from "../firebaseConfig/firebase.js"
 import swal from 'sweetalert';
-import { Form } from "react-bootstrap";
 
 import { useForm} from "react-hook-form"
 
